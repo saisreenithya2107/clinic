@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>Jclinic</title>
+    
+    <link href="{%static 'homepage/css/bootstrap2.min.css' %}" rel="stylesheet" />
+    <link href="{%static 'homepage/css/animate.min.css' %}" rel="stylesheet"/>
+    <link href="{%static 'homepage/css/light-bootstrap-dashboard.css' %}"  rel="stylesheet"/>
+    <link href="{%static 'homepage/css/demo.css' %}" rel="stylesheet" />
+   <link href="{%static 'homepage/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+   <link href="{%static 'homepage/css/sytle3.css' %}" rel="stylesheet" type="text/css" media="all" />
+</head>
+<body>
+
+
+
+</head>
+
+	
+	<div class="main-w3layouts wrapper">
+		<h1>Login</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+                <form class="site-form" action="{% url 'lab:login1' %}" method="post">
+                    {% csrf_token %}
+           
+                      {{form}}
+        
+                      <br><br>
+                      <input type="submit" value="Login"><br><br>
+                      <p>Forgot your <a href="#"> Password</a></p>
+                         <br>
+                      <p>Not a member........<a href="#"> Register Now!</a></p>
+               
+                  </form>
+				
+			</div>
+		</div>
+
+	
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+    
+    {% block content %}
+{% endblock %}
+
+</body>
+</html>

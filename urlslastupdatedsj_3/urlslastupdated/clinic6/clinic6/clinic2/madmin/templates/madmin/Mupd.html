@@ -1,0 +1,69 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+
+
+<link href="{%static 'homepage/css/sytle3.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+
+</head>
+
+<body>
+	
+	<div class="main-w3layouts wrapper">
+		
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+                <form class="site-form" action="updM" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="upd" value="{{ test.mid }}">
+                    Name
+                    <input type="text" name="name" value="{{ test.name }}" placeholder="">
+                    Stength
+                    <input type="text" name="name2" value="{{ test.strength }}" placeholder="">
+                    Form
+                    <input type="text" name="name3" value="{{ test.quantity }}" placeholder="">
+                    Prandial
+                    <input type="text" name="name4" value="{{ test.prandial }}" placeholder="">
+                    Times
+                    <input type="text" name="name5" value="{{ test.times }}" placeholder="">
+                    Period
+                    <input type="text" name="name6" value="{{ test.period }}" placeholder="">
+                    price
+                    <input type="text" name="name7" value="{{ test.price }}" placeholder="">
+                    
+                    
+					<br>
+					
+					<input type="submit" value="SUBMIT">
+				</form>
+				
+			</div>
+		</div>
+
+	
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+    
+    {% block content %}
+{% endblock %}
+
+</body>
+</html>

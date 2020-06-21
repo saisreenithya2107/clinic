@@ -1,0 +1,445 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>medical</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="{%static 'homepage/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'homepage/css/style1.css' %}">
+</head>
+
+
+
+<body>
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand">Jclinic </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                       
+                        {{p}}
+                        <div class="collapse navbar-collapse main-menu-item justify-content-center"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{% url 'home2' %}">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#about">about</a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link" href="">Doctors</a>
+                                </li> -->
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        view our team
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="">Our doctors</a>
+                                        <a class="dropdown-item" href="">Our staff</a>
+                                        <a class="dropdown-item" href="">Our medicine master</a>
+                                        <a class="dropdown-item" href="">Our lab tech</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        more
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="">
+                                        <a class="dropdown-item" href="{% url 'appointment' %}">book appointment</a>
+                                        <a class="dropdown-item" href="{% url 'labtest' %}">Book labtest</a>
+                                        <a class="dropdown-item" href="{% url 'medicines' %}">book medicines</a>
+                                        <!-- <a class="dropdown-item" href="#">attend video call</a> -->
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        My bookings
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="">
+                                        <a class="dropdown-item" href="{% url 'ap' %}">My appointments</a>
+                                        <a class="dropdown-item" href="{% url 'lap' %}">My labtests</a>
+                                        <a class="dropdown-item" href="{% url 'lap' %}">My labappointments</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+    <section class="banner_part">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-5 col-xl-5">
+                    <div class="banner_text">
+                        <div class="banner_text_iner">
+                            <h5>We are here for your care</h5>
+                            <h1>Best Care &
+                                Better Doctors</h1>
+                            <p>Jclinic is an online clinical website, which mimics the offline clinics completely online.
+                                Established to provide a good service to customer, Jclinic has almost every feature an offline clinic has.
+                                It has various sub-sections, that includes Doctors, staff, a medicine master, various labs, etc, and an admin to monitor everything
+                            </p>
+                            <!-- <a href="#" class="btn_2">Make an appointment</a> -->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="banner_img">
+                        <img src="{%static 'homepage/img/doctor.jpg' %}" alt="" style="width: 600px; height: 600px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="service_area">
+        <div class="container p-0">
+            <div class="row no-gutters">
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-electrocardiogram"></i>
+                        </div>
+                        <h3>Appointment</h3>
+                        <p>Appointments are the best way to express our uneasiness and get correct treatment.</p>
+                        <a href="{% url 'appointment' %}" class="btn_2">Book an Appointment</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-emergency-call"></i>
+                        </div>
+                        <h3>Lab test</h3>
+                        <p>Lab tests help doctors and patients know about the disease better.</p>
+                        <a href="{% url 'labtest' %}" class="btn_2">Book Lab Appointment</a>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="single_service">
+                        <div class="icon">
+                            <i class="flaticon-first-aid-kit"></i>
+                        </div>
+                        <h3>Medicines</h3>
+                        <p>Medicines provides instant relief from accute and chronic diseases.</p>
+                        <a href="{% url 'medicines' %}" class="btn_2">Book medicines</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <section class="about_us padding_top">
+        <div class="container">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-md-6 col-lg-6">
+                    <div class="about_us_img">
+                        <img src="{%static 'homepage/img/lab.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="about_us_text">
+                        <h2 id="about">About us</h2>
+                        <p>Established in July 2020, Jclinic has now emerged as one of the best clinics in the city.
+                            It started with a good cause to serve patients online with a minimal fee of ₹100,
+                            So that smiles can be seen on each and every poor 
+
+                        </p>
+                            <a href="{% url 'appointment' %}" class="btn_2">Make an appointment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="our_department_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="section_title text-center mb-55">
+                        <h3>Our Departments</h3>
+                        <p><br></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-3 col-md-5 col-lg-3">
+                    <div class="single_department">
+                        <div class="department_thumb">
+                            <img src="{%static 'homepage/img/11.png' %}" alt="">
+                        </div>
+                        <div class="department_content">
+                            <h3><a href="#">Labs</a></h3>
+                            <p>Labs present provides various types of basic tests and advanced tests .</p>
+                            <a href="#" class="btn_2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-5 col-lg-3">
+                    <div class="single_department">
+                        <div class="department_thumb">
+                            <img src="{%static 'homepage/img/22.png' %}" alt="" >
+                        </div>
+                        <div class="department_content">
+                            <h3><a href="#">Staff</a></h3>
+                            <p>Staff are present to coordinate doctor and patient, serve every query you get.</p>
+                            <a href="#" class="btn_2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-5 col-lg-3">
+                    <div class="single_department">
+                        <div class="department_thumb">
+                            <img src="{%static 'homepage/img/33.png' %}" alt="">
+                        </div>
+                        <div class="department_content">
+                            <h3><a href="#">Medicines</a></h3>
+                            <p>you can book each and every medicine which is present in the prescription here.</p>
+                            <a href="#" class="btn_2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-5 col-lg-3">
+                    <div class="single_department">
+                        <div class="department_thumb">
+                            <img src="{%static 'homepage/img/44.png' %}" alt="" >
+                        </div>
+                        <div class="department_content">
+                            <h3><a href="{% url 'docs' %}">Doctors</a></h3>
+                            <p>Our doctors are ready to cure every minute ailment you get and every chronic disease.</p>
+                            <a href="{% url 'docs' %}" class="btn_2">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </div>
+    </div>
+  
+    <!-- <div class="business_expert_area">
+        <div class="business_tabs_area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <ul class="nav" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                            aria-selected="true">Excellent Services</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+                            aria-selected="false">Qualified Doctors</a>
+                            </li>
+
+
+                            <li class="nav-item">
+                                <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact"
+                            aria-selected="false">Emergency Departments</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="container">
+            <div class="border_bottom">
+                    <div class="tab-content" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                
+                                    <div class="row align-items-center">
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_info">
+                                                    <div class="icon">
+                                                        <i class="flaticon-first-aid-kit"></i>
+                                                    </div>
+                                                    <h3>Leading edge care for Your family</h3>
+                                                    <p>Esteem spirit temper too say adieus who direct esteem.
+                                                        It esteems luckily picture placing drawing. Apartments frequently or motionless on
+                                                        reasonable projecting expression.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_thumb">
+                                                    <img src="{%static 'homepage/img/about/business.png' %}" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="row align-items-center">
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_info">
+                                                    <div class="icon">
+                                                        <i class="flaticon-first-aid-kit"></i>
+                                                    </div>
+                                                    <h3>Leading edge care for Your family</h3>
+                                                    <p>Esteem spirit temper too say adieus who direct esteem.
+                                                        It esteems luckily picture placing drawing. Apartments frequently or motionless on
+                                                        reasonable projecting expression.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_thumb">
+                                                    <img src="img/about/business.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                            <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <div class="row align-items-center">
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_info">
+                                                    <div class="icon">
+                                                        <i class="flaticon-first-aid-kit"></i>
+                                                    </div>
+                                                    <h3>Leading edge care for Your family</h3>
+                                                    <p>Esteem spirit temper too say adieus who direct esteem.
+                                                        It esteems luckily picture placing drawing. Apartments frequently or motionless on
+                                                        reasonable projecting expression.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-md-6">
+                                                <div class="business_thumb">
+                                                    <img src="img/about/business.png" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+                            </div>
+                          </div>
+            </div>
+        </div>
+    </div> -->
+
+    <footer class="footer-area">
+        <div class="footer section_padding">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-xl-2 col-md-4 col-sm-6 single-footer-widget">
+                        <a href="#" class="footer_logo"> <img src="" alt=""> </a>
+                        <p>Jclinic</p>
+                        <div class="social_logo">
+                            <a href="#"><i class="ti-facebook"></i></a>
+                            <a href="#"> <i class="ti-twitter"></i> </a>
+                            <a href="#"><i class="ti-instagram"></i></a>
+                            <a href="#"><i class="ti-skype"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Doctors</a></li>
+                            <li><a href="#">Labs</a></li>
+                            <li><a href="#">Medicine master</a></li>
+                            <li><a href="#">Staff</a></li>
+                        </ul>
+                    </div>
+                    <!-- <div class="col-xl-2 col-sm-6 col-md-4 single-footer-widget">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">In the community</a></li>
+                            <li><a href="#">IU health foundation</a></li>
+                            <li><a href="#">Family support </a></li>
+                            <li><a href="#">Business solution</a></li>
+                            <li><a href="#">Community clinic</a></li>
+                        </ul>
+                    </div> -->
+                    <!-- <div class="col-xl-2 col-sm-6 col-md-6 single-footer-widget">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="#">Lights were season</a></li>
+                            <li><a href="#"> Their is let wherein</a></li>
+                            <li><a href="#">which given over</a></li>
+                            <li><a href="#">Without given She</a></li>
+                            <li><a href="#">Isn two signs think</a></li>
+                        </ul>
+                    </div> -->
+                    <div class="col-xl-3 col-sm-6 col-md-6 single-footer-widget">
+                        <h4>Contact us</h4>
+                        <center><p>feel free to contact us anytime. Our mail address is oclinic2020@gmail.com</p></center>
+                        <!-- <div class="form-wrap" id="mc_embed_signup">
+                            <form target="_blank"
+                                action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01"
+                                method="get" class="form-inline">
+                                <input class="form-control" name="EMAIL" placeholder="Your Email Address"
+                                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '"
+                                    required="" type="email">
+                                <button class="click-btn btn btn-default text-uppercase"> <i class="ti-angle-right"></i>
+                                </button>
+                                <div style="position: absolute; left: -5000px;">
+                                    <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value=""
+                                        type="text">
+                                </div>
+
+                                <div class="info"></div>
+                            </form>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="copyright_part">
+            <div class="container">
+                <div class="row align-items-center">
+           <div class="col-lg-4 col-md-12 text-center text-lg-right footer-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"> <i class="ti-twitter"></i> </a>
+                        <a href="#"><i class="ti-instagram"></i></a>
+                        <a href="#"><i class="ti-skype"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="{%static 'homepage/js/jquery-1.12.1.min.js' %}"></script>
+    <!-- popper js -->
+    <script src="{%static 'homepage/js/popper.min.js' %}"></script>
+    <!-- bootstrap js -->
+    <script src="{%static 'homepage/js/bootstrap.min.js' %}"></script>
+    <!-- owl carousel js -->
+    <script src="{%static 'homepage/js/owl.carousel.min.js' %}"></script>
+    <script src="{%static 'homepage/js/jquery.nice-select.min.js' %}"></script>
+    <!-- contact js -->
+    <script src="{%static 'homepage/js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{%static 'homepage/js/jquery.form.js' %}"></script>
+    <script src="{%static 'homepage/js/jquery.validate.min.js' %}"></script>
+    <script src="{%static 'homepage/js/mail-script.js' %}"></script>
+    <script src="{%static 'homepage/js/contact.js' %}"></script>
+    <!-- custom js -->
+    <script src="{%static 'homepage/js/custom.js' %}"></script>
+ 
+</body>
+
+</html>

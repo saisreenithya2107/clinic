@@ -1,0 +1,186 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="{%static 'homepage/css/sytle3.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+    <!-- <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Doctors Signup</title>
+    <style>
+        body  {
+            background-image: url("https://image.freepik.com/free-photo/doctor-s-stethoscope-with-blue-background_23-2147652363.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .transbox {
+            margin: 50px;
+            background-color: #F0EAD6;
+            /border: 1px solid black;/
+            opacity: 0.8;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            background-color: #F0EAD6;
+        }
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 2px;
+            width: 10px;
+        }
+        .navbar{
+            background-color: #2B669A;
+            opacity: 0.8;
+            text-color: black;
+        }
+        .navbar li a, .navbar .navbar-brand {
+            color: #d5d5d5 !important;
+        }
+        .navbar-nav li a:hover {
+            color: #fff !important;
+        }
+        .navbar-nav li.active a {
+            color: #fff !important;
+            background-color: #29292c !important;
+        }
+        .navbar-default .navbar-toggle {
+            border-color: transparent;
+        }
+        .open .dropdown-toggle {
+            color: #fff;
+            background-color: #555 !important;
+        }
+        .dropdown-menu li a {
+            color: #000 !important;
+        }
+        .dropdown-menu li a:hover {
+            background-color: blue !important;
+        }
+
+    </style> -->
+</head>
+<body>
+    <!-- <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="website">
+                    <a class="navbar-brand" href="#" style="font-family: 'Satisfy'; font-size:25px">Jclinic</a>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>{% if temp == 1 %}<a href="#"><span class="fa fa-ambulance" aria-hidden="true" ></span>&nbspBook an Appointment</a>{% else %}<a href="#"><span class="glyphicon glyphicon-arrow-left" aria-hidden="true" ></span>&nbsp Back</a>{% endif %}</li>
+                    <li><a href="#"><span class="fa fa-medkit" aria-hidden="true"></span>&nbspOrder Medicines</a></li>
+                    <li><a href="#">Chat with a doctor</a></li>
+                    <li><a href="#">Video Call</a></li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">MORE
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Book lab tests</a></li>
+                            <li><a href="#">Forum</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav> -->
+    <div class="main-w3layouts wrapper">
+        <h1>Update your details</h1>
+        <div class="main-agileinfo">
+          <div class="agileits-top">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div style="color: darkgreen">
+                    <h6>FirstName  :</h6>
+                    {{staff_form.firstname}}
+                    <h6>LastName   :</h6>
+                    {{staff_form.lastname}}
+                    <h6>staff_photo:</h6>
+                    {{staff_form.staff_photo}}
+                    <h6>address:</h6>
+                    {{staff_form.address}}<br><br>
+                    <h6>Phone number</h6>
+                    {{staff_form.phone_num}}<br><br>
+                  <input type="submit" value="Update"><br><br>
+                    
+                    <!-- <button class='btn-general btn-profile' class="reg" type="submit">Update</button><br><br> -->
+                            </div>
+            
+            </form>
+                        
+          </div>
+        </div>
+    
+      
+        <ul class="colorlib-bubbles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+        </div>
+    
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+
+<body>
+  
+  <div class="main-w3layouts wrapper">
+    <h1>Login</h1>
+    <div class="main-agileinfo">
+      <div class="agileits-top">
+                <form class="site-form" action="http://127.0.0.1:8000/doc/l2" method="post">
+        {% csrf_token %}
+        
+          {{form}}
+
+          <br><br>
+          <input type="submit" value="Login"><br><br>
+         
+        
+      </form>
+        
+      </div>
+    </div>
+
+  
+    <ul class="colorlib-bubbles">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    </div>
+ 
+</body>
+</html> -->

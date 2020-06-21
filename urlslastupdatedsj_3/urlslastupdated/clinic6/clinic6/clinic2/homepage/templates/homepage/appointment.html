@@ -1,0 +1,184 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>medical</title>
+    <link rel="icon" href="img/favicon.png">
+    <link rel="stylesheet" href="{%static 'homepage/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{%static 'homepage/css/style1.css' %}">
+</head>
+
+
+
+<body>
+    <header class="main_menu home_menu">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <a class="navbar-brand" href="homepage.html"> <img src="" alt="Jclinic"> </a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse main-menu-item justify-content-center"
+                            id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">about</a>
+                                </li>
+                            
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        view our team
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="">Our doctors</a>
+                                        <a class="dropdown-item" href="">Our staff</a>
+                                        <a class="dropdown-item" href="">Our medicine master</a>
+                                        <a class="dropdown-item" href="">Our lab tech</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown_1"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        more
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="">
+                                        <a class="dropdown-item" href="">book appointment</a>
+                                        <a class="dropdown-item" href="">Book labtest</a>
+                                        <a class="dropdown-item" href="">book medicines</a>
+                                        <a class="dropdown-item" href="">attend video call</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="">Login</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+   
+
+    <section class="contact-section section_padding">
+        <div class="container">
+          <div class="d-none d-sm-block mb-5 pb-4">
+           
+          <div class="row">
+            <div class="col-12">
+              <h2 class="contact-title">  Book your appointment</h2>
+            </div>
+            <div class="col-lg-8">
+              <div class="form-contact contact_form" id="contactForm">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+    
+            
+                        User Name    <input type="text" name="patient" value="" class="form-control w-100"  cols="30" rows="9"
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                        placeholder='Enter Message'><br>
+                        Doctor
+                        <form action="{% url 'hii' %}" method="POST">
+                                 {% csrf_token %}
+                        <select name="doctor" class="form-control w-100" cols="30" rows="9"
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                        placeholder='Enter Message' >
+                        <option value="">Select-Doctor</option>
+                        {% for d in doctors %}
+                         
+
+                        <option value="{{ d.user }}">
+
+                             {{d.firstname}} {{d.lastname}}
+
+                             <input type="submit" name="imp" value="Add" >
+                                                      
+                        </option>
+ 
+                        
+                       {% endfor %}
+
+                      </select>
+                   </form>
+                      <br>
+                      Date 
+
+                      <select name="date" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'>
+                      {% for s in dates %}
+                      <option value="{{ s.date }}">
+                        {{ s.date }}  &nbsp; &nbsp; {{ s.work_title }}
+                      </option>
+                      {% endfor %}
+                  </select>
+
+<!--                          <input type="date" name="date" value="" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'> --><br>
+                      Time
+                      <select name="time" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'>
+                       
+                        <option value="09:00:00">9AM</option>
+                        <option value="09:30:00">9.30AM</option>
+                        <option value="10:00:00">10AM</option>
+                        <option value="10:30:00">10.30AM</option>
+                        <option value="11:00:00">11AM</option>
+                        <option value="11:30:00">11.30AM</option>
+                        <option value="12:00:00">12AM</option>
+                        <option value="12:30:00">12.30AM</option>
+                        <option value="13:00:00">1PM</option>
+                        <option value="13:30:00">1.30PM</option>
+                        <option value="14:00:00">2PM</option>
+                        <option value="14:30:00">2.30PM</option>
+                        <option value="15:00:00">3PM</option>
+                        <option value="15:30:00">3.30PM</option>
+                      </select><br>
+                    
+                    <br>
+                  
+                    Symtoms<input type="text" name="symtoms" value="" class="form-control w-100" cols="30" rows="9"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                    placeholder='Enter Message'><br>
+                    
+                    Reports<input type="file" name="reports" value="" class="form-control w-100" cols="30" rows="9"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                    placeholder='Enter Message'><br>
+                    
+                     
+                   <form action="{% url 'booked' %}" method="POST" enctype="multipart/form-data">  
+                    {% csrf_token %}
+                <div class="form-group mt-3">
+                  <button type="submit" class="button button-contactForm btn_1">SUBMIT</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          
+            </div>
+          </div>
+        </div>
+<section>
+
+</body>
+</html>

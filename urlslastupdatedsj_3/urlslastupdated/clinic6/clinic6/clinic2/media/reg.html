@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form class="site-form" action="http://127.0.0.1:8000/doc/register">
+        {% csrf_token %}
+        <center>
+          <br><br>
+          <input type="submit" value="Register a new doctor"><br><br>
+        </center>
+      </form>
+      <form class="site-form" action="http://127.0.0.1:8000/lab/register">
+        {% csrf_token %}
+        <center>
+          <br><br>
+          <input type="submit" value="Register a new lab"><br><br>
+        </center>
+      </form>
+      <form class="site-form" action="http://127.0.0.1:8000/login/register">
+        {% csrf_token %}
+        <center>
+          <br><br>
+          <input type="submit" value="Register a new patient"><br><br>
+        </center>
+      </form>
+      <form class="site-form" action="http://127.0.0.1:8000/staff/register" >
+        {% csrf_token %}
+        <center>
+          <br><br>
+          <input type="submit" value="Register a new staff"><br><br>
+        </center>
+      </form>
+      <form class="site-form" action="http://127.0.0.1:8000/medicine/register">
+        {% csrf_token %}
+        <center>
+          <br><br>
+          <input type="submit" value="Register a new medcine master"><br><br>
+        </center>
+      </form>
+</body>
+</html>

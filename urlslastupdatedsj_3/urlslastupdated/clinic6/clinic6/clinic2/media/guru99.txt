@@ -1,0 +1,7 @@
+Doctor's suggestions
+cold,nice,bad
+
+
+the required tests['Test1.2j', 'Test1', 'Test9.1']
+
+the required meds['crocine pain relief', 'cold act', 'paracetomol111']

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en" dir="ltr">
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+
+    <link href="{%static 'homepage/css/bootstrap2.min.css' %}" rel="stylesheet" />
+    <link href="{%static 'homepage/css/animate.min.css' %}" rel="stylesheet"/>
+    <link href="{%static 'homepage/css/light-bootstrap-dashboard.css' %}"  rel="stylesheet"/>
+    <link href="{%static 'homepage/css/demo.css' %}" rel="stylesheet" />
+   <link href="{%static 'homepage/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+   <link rel="stylesheet" href="https://www.webrtc-experiment.com/style.css">
+   <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script>
+   <script src="https://www.webrtc-experiment.com/gif-recorder.js"></script>
+   <script src="https://www.webrtc-experiment.com/getScreenId.js"></script>
+   <script src="https://www.webrtc-experiment.com/DetectRTC.js"> </script>
+   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+    <link rel="stylesheet" href="{% static 'homepage/css/new1.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+  </head>
+  <body>
+    <div class="container">
+ <center>
+
+
+<div class="wrapper">
+    <div class="sidebar" data-color="azure">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    JCLINIC
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="{% url 'dh' %}">
+                        <i class="pe-7s-graph"></i>
+                        <p>home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'calendar' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>My availability</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'doctor:doctorupdate' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>edit my profile</p>
+                    </a>
+                </li>            
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="{% url 'logout' %}">
+                               <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>    
+               
+                </div>
+            </div>
+        </nav>
+  <main>
+
+      <form action="{% url 'for_next' %}" method="post" style="position : relative;float : right;">
+        {% csrf_token %}
+        <input type="submit" value="next"  class = "btn btn-dark" >
+      </form>
+
+      <form action="{% url 'for_prev' %}" method="post" style = "position : relative;float:left;">
+        {% csrf_token %}
+        <input type="submit" value="back"  class = "btn btn-dark">
+      </form>
+
+        <h3>CALENDAR</h3>
+    <div class="calendar">
+         <p>{{ present_year }}</p>
+         <form action = "{% url 'selectmonth' %}" method="post" >
+           <label for="select_month">Select Month : </label>
+           <input type="month" name="select_month" id = "select_month" onchange="this.form.submit()">
+           {% csrf_token %}
+         </form>
+      <div class="calendar__header">
+        <div>mon</div>
+        <div>tue</div>
+        <div>wed</div>
+        <div>thu</div>
+        <div>fri</div>
+        <div>sat</div>
+        <div>sun</div>
+      </div>
+
+      {% for i,j in zipped_data  %}
+
+
+      <div class="calendar__week">
+        {% if i.0 == j.0.0 and i.0 != 0 %}
+          <div class="calendar__day day" onclick = "myfunc('{{ i.0 }}')" style = "background-color : #37b2b7">
+             <span id = "{{i.0}}">{{i.0}}</span>
+             <br>
+             {{j.0.1}}
+           </div>
+          {% elif i.0 == 0 %}
+
+            <div class="calendar__day day"></div>
+        {% else %}
+
+          <div class="calendar__day day" onclick="myfunc('{{i.0}}')"><span id = "{{i.0}}">{{i.0}}</span></div>
+       {% endif %}
+      {% if i.1 == j.1.0 and i.1 != 0 %}
+        <div class="calendar__day day" onclick="myfunc('{{i.1}}')" style = "background-color : #37b2b7;">
+          <span id = "{{i.1}}">{{i.1}}</span>
+          <br>
+        {{j.1.1}}
+        </div>
+        {% elif i.1 == 0 %}
+
+          <div class="calendar__day day"></div>
+
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.1}}')"><span id = "{{i.1}}">{{i.1}}</span></div>
+      {% endif %}
+      {% if i.2 == j.2.0 and i.2 != 0  %}
+        <div class="calendar__day day" onclick="myfunc('{{i.2}}')" style = "background-color : #37b2b7;">
+          <span id = "{{i.2}}">{{i.2}}</span>
+          <br>
+           {{j.2.1}}
+        </div>
+        {% elif i.2 == 0 %}
+
+          <div class="calendar__day day"></div>
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.2}}')"><span id = '{{i.2}}'>{{i.2}}</span></div>
+      {% endif %}
+      {% if i.3 == j.3.0 and i.3 != 0  %}
+        <div class="calendar__day day" style = "background-color : #37b2b7; " onclick = "myfunc('{{i.3}}')">
+           <span id = "{{i.3}}">{{i.3}}</span>
+            <br>
+            {{j.3.1}}
+         </div>
+        {% elif i.3 == 0 %}
+
+          <div class="calendar__day day" ></div>
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.3}}')"><span id = "{{i.3}}">{{i.3}}</span></div>
+      {% endif %}
+      {% if i.4 == j.4.0  and i.4 != 0 %}
+        <div class="calendar__day day" style = "background-color : #37b2b7; " onclick = "myfunc('{{i.4}}')">
+          <span id = "{{i.4}}">{{i.4}}</span>
+          <br>
+          {{j.4.1}}
+        </div>
+        {% elif i.4 == 0 %}
+
+          <div class="calendar__day day"></div>
+
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.4}}')"><span id = "{{i.4}}">{{i.4}}</span></div>
+      {% endif %}
+      {% if i.5 == j.5.0 and i.5 != 0  %}
+        <div class="calendar__day day" onclick="myfunc('{{i.5}}')" style = "background-color : #37b2b7; ">
+           <span id = "{{i.5}}">{{i.5}}</span>
+           <br>
+           {{j.5.1}}
+         </div>
+        {% elif i.5 == 0 %}
+
+          <div class="calendar__day day"></div>
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.5}}')"><span id = "{{i.5}}">{{i.5}}</span></div>
+      {% endif %}
+      {% if i.6 == j.6.0 and i.6 != 0 %}
+        <div class="calendar__day day" onclick="myfunc('{{i.6}}')" style = "background-color : #37b2b7; ">
+           <span>{{i.6}}</span>
+              <br>
+              {{j.6.1}}
+         </div>
+        {% elif i.6 == 0 %}
+
+          <div class="calendar__day day"></div>
+      {% else %}
+        <div class="calendar__day day" onclick="myfunc('{{i.6}}')"><span id = "{{i.6}}">{{i.6}}</span></div>
+      {% endif %}
+
+      </div>
+      {% endfor %}
+    </div>
+
+  </main>
+
+</center>
+
+
+</div>
+
+
+<div class="modal" tabindex="-1" id = "myModal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Make a Plan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <center>
+       <form method="post" action="{% url 'filldata' %}" class = "form-group">
+      <div class="modal-body">
+       <label for="try"  style="float : left;">date : </label>
+      <input type="text" id = "date_work" name="date_work" value="" readonly class = "form-control">
+      <br>
+      <label for = "modal_work" style="float : left;">work : </label>
+      <input type="text" name="data_work" value="" id = "data_work" maxlength="100" required class = "form-control">
+      </div>
+      <div class="modal-footer">
+      <input type="submit" name="" value="Submit" class= "btn btn-primary" onclick="window.location.reload()">
+      </div>
+       {% csrf_token %}
+       </form>
+     </center>
+    </div>
+  </div>
+</div>
+
+</div>
+<script type="text/javascript">
+
+      function myfunc(h){
+        var y = h;
+         var x = document.getElementById(String(y)).innerHTML;
+         var t = String(x) + "-" + String( {{ year_number.0 }} ) + "-" + String( {{ year_number.1 }} );
+         document.getElementById('date_work').value = t;
+         $(document).ready(function(){
+             document.getElementById('date_work').value = t;
+            $("#myModal").modal();
+         });
+     }
+
+</script>
+
+
+  </body>
+</html>

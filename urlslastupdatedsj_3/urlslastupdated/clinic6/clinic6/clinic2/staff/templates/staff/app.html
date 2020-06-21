@@ -1,0 +1,235 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>Jclinic</title>
+    
+    <link href="{%static 'homepage/css/bootstrap2.min.css' %}" rel="stylesheet" />
+    <link href="{%static 'homepage/css/animate.min.css' %}" rel="stylesheet"/>
+    <link href="{%static 'homepage/css/light-bootstrap-dashboard.css' %}"  rel="stylesheet"/>
+    <link href="{%static 'homepage/css/demo.css' %}" rel="stylesheet" />
+   <link href="{%static 'homepage/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="azure">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    JCLINIC
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="{% url 'staff:staff1' %}">
+                        <i class="pe-7s-graph"></i>
+                        <p>my home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="pe-7s-bell"></i>
+                        <p>view Doctor's availability</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'staff:appointment' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>Book an appointment</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <i class="pe-7s-bell"></i>
+                        <p>view my profile</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'staff:staffupdate' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>edit my profile</p>
+                    </a>
+                </li>            
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                       
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="{% url 'staff:logout' %}">
+                               <p>Logout</p>
+                            </a>
+                        </li>
+               
+                </div>
+            </div>
+        </nav>
+
+       <section class="contact-section section_padding">
+        <div class="container">
+          <div class="d-none d-sm-block mb-5 pb-4">
+           
+          <div class="row">
+            <div class="col-12">
+              <h2 class="contact-title">  Book your appointment</h2>
+            </div>
+            <div class="col-lg-8">
+              <div class="form-contact contact_form" id="contactForm">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+    
+            
+                        User Name    <input type="text" name="patient" value="" class="form-control w-100"  cols="30" rows="9"
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                        placeholder='Enter Message'><br>
+                        Doctor
+                        <form action="{% url 'staff:hii' %}" method="POST">
+                                 {% csrf_token %}
+                        <select name="doctor" class="form-control w-100" cols="30" rows="9"
+                        onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                        placeholder='Enter Message' >
+                        <option value="">Select-Doctor</option>
+                        {% for d in doctors %}
+                         
+
+                        <option value="{{ d.user }}">
+
+                             {{d.firstname}} {{d.lastname}}
+
+                             <input type="submit" name="imp" value="Add" >
+                                                      
+                        </option>
+ 
+                        
+                       {% endfor %}
+
+                      </select>
+                   </form>
+                      <br>
+                      Date 
+
+                      <select name="date" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'>
+                      {% for s in dates %}
+                      <option value="{{ s.date }}">
+                        {{ s.date }}  &nbsp; &nbsp; {{ s.work_title }}
+                      </option>
+                      {% endfor %}
+                  </select>
+
+<!--                          <input type="date" name="date" value="" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'> --><br>
+                      Time
+                      <select name="time" class="form-control w-100" cols="30" rows="9"
+                      onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                      placeholder='Enter Message'>
+                       
+                        <option value="09:00:00">9AM</option>
+                        <option value="09:30:00">9.30AM</option>
+                        <option value="10:00:00">10AM</option>
+                        <option value="10:30:00">10.30AM</option>
+                        <option value="11:00:00">11AM</option>
+                        <option value="11:30:00">11.30AM</option>
+                        <option value="12:00:00">12AM</option>
+                        <option value="12:30:00">12.30AM</option>
+                        <option value="13:00:00">1PM</option>
+                        <option value="13:30:00">1.30PM</option>
+                        <option value="14:00:00">2PM</option>
+                        <option value="14:30:00">2.30PM</option>
+                        <option value="15:00:00">3PM</option>
+                        <option value="15:30:00">3.30PM</option>
+                      </select><br>
+                    
+                    <br>
+                  
+                    Symtoms<input type="text" name="symtoms" value="" class="form-control w-100" cols="30" rows="9"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                    placeholder='Enter Message'><br>
+                    
+                    Reports<input type="file" name="reports" value="" class="form-control w-100" cols="30" rows="9"
+                    onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Message'"
+                    placeholder='Enter Message'><br>
+                    
+                     
+                   <form action="{% url 'staff:booked' %}" method="POST" enctype="multipart/form-data">  
+                    {% csrf_token %}
+                <div class="form-group mt-3">
+                  <button type="submit" class="button button-contactForm btn_1">SUBMIT</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          
+            </div>
+          </div>
+        </div>
+<section>
+
+</div>
+
+
+</body>
+
+    <!--   Core JS Files   -->
+    <script src="{%static 'homepage/js/jquery.3.2.1.min.js' %}" type="text/javascript"></script>
+    <script src="{%static 'homepage/js/bootstrap2.min.js' %}" type="text/javascript"></script>
+
+    <!--  Charts Plugin -->
+   
+   
+    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+    <script src="{%static 'js/light-bootstrap-dashboard.js?v=1.4.0' %}"></script>
+
+    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
+    <script src="{%static 'homepage/js/demo.js' %}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+
+            demo.initChartist();
+
+            $.notify({
+                icon: 'pe-7s-gift',
+                message: "Welcome to <b>Light Bootstrap Dashboard</b> - a beautiful freebie for every web developer."
+
+            },{
+                type: 'info',
+                timer: 4000
+            });
+
+        });
+    </script>
+
+</html>
+

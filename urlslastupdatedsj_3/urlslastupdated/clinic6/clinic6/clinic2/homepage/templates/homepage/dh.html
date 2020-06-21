@@ -1,0 +1,347 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>Jclinic</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <link href="{%static 'homepage/css/bootstrap2.min.css' %}" rel="stylesheet" />
+    <link href="{%static 'homepage/css/animate.min.css' %}" rel="stylesheet"/>
+    <link href="{%static 'homepage/css/light-bootstrap-dashboard.css' %}"  rel="stylesheet"/>
+    <link href="{%static 'homepage/css/demo.css' %}" rel="stylesheet" />
+   <link href="{%static 'homepage/css/pe-icon-7-stroke.css' %}" rel="stylesheet" />
+
+   <!-- <link rel="stylesheet" href="https://www.webrtc-experiment.com/style.css"> -->
+   <script src="https://www.webrtc-experiment.com/RecordRTC.js"></script>
+   <script src="https://www.webrtc-experiment.com/gif-recorder.js"></script>
+   <script src="https://www.webrtc-experiment.com/getScreenId.js"></script>
+   <script src="https://www.webrtc-experiment.com/DetectRTC.js"> </script>
+   <script src="https://webrtc.github.io/adapter/adapter-latest.js"></script>
+
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar" data-color="azure">
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="" class="simple-text">
+                    JCLINIC
+                </a>
+            </div>
+
+            <ul class="nav">
+                <li class="active">
+                    <a href="{% url 'dh' %}">
+                        <i class="pe-7s-graph"></i>
+                        <p>home</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'calendar' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>My availability</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'doctor:doctorupdate' %}">
+                        <i class="pe-7s-bell"></i>
+                        <p>edit my profile</p>
+                    </a>
+                </li>            
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dashboard</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                          
+                                <p class="hidden-lg hidden-md">Dashboard</p>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                           <a href="{% url 'logout' %}">
+                               <p>Logout</p>
+                            </a>
+                        </li>
+                    </ul>    
+               
+                </div>
+            </div>
+        </nav>
+        
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="header">
+                                <h4 class="title">List of appointments   </h4>
+                                <p class="category">Here is list of appointments..</p>
+                            </div>
+                            <div class="content table-responsive table-full-width">
+                                <table class="table table-hover table-striped">
+                                    <thead>
+                                        <th>Patient</th>
+                                      <th>Date</th>
+                                      <th>reports</th>
+                                       <th>time</th>
+                                       <th>meet link</th>
+                                       <th>symptoms</th>
+                                       <th>Prescribe</th>                                
+                                    </thead>
+                                    
+                                    <tbody>
+                                        {% for a in app %}
+                                        <tr>
+                                          <td>{{a.user_name}}</td>
+                                          <td> {{a.date}}</td>
+                                          <td><a href="../media/{{a.reports}}"> view</a></td>
+                                          <td>{{a.time}}</td>
+                                          <td>
+                                                      <div  class="experiment recordrtc" >
+                                                        <div style="background-color: white;" class="recording-media media-container-format">
+                                                            <!-- <option >Video</option> -->
+                                                        <button  value="record-video"><a href="{{a.link}}" id="btnStart" target="_blank">view link here</a></button>
+                                                        <br>   
+                                                        </div>
+                                                    <video width="0" height="0"></video>
+                                                      </div>
+                                                  </td>
+                                          <!-- <td><a href="{{a.link}}" id="btnStart" target="_blank">view link here</a></td> -->
+                                          <td>{{a.symptoms}}</td>
+
+                                          <td><a href="">
+     <form action="{% url 'prescribe' %}" method="post">
+          {% csrf_token %}
+
+       <!--  <input type="hidden" name="upd" value="{{ d.mid }}"> -->
+        <input type="submit" value="Prescribe" >
+       
+     </form>
+
+     </a></td>
+                                        </tr>
+                                        {% endfor %}
+            
+                                     
+                                    </tbody>
+                                </table>
+                                
+                            
+                            </div>
+                        </div>
+                    </div>
+  
+       
+              </div>
+          </div>
+  
+  
+        
+  
+  
+            </div>
+        </div>
+
+
+      
+
+    </div>
+</div>
+<script>
+    (function() {
+        var params = {},
+            r = /([^&=]+)=?([^&]*)/g;
+
+        function d(s) {
+            return decodeURIComponent(s.replace(/\+/g, ' '));
+        }
+
+        var match, search = window.location.search;
+        while (match = r.exec(search.substring(1))) {
+            params[d(match[1])] = d(match[2]);
+
+            if(d(match[2]) === 'true' || d(match[2]) === 'false') {
+                params[d(match[1])] = d(match[2]) === 'true' ? true : false;
+            }
+        }
+
+        window.params = params;
+    })();
+</script>
+
+<script>
+    var recordingDIV = document.querySelector('.recordrtc');
+  //  var recordingMedia = recordingDIV.querySelector('.recording-media');
+    var recordingPlayer = recordingDIV.querySelector('video');
+    var mediaContainerFormat = recordingDIV.querySelector('.media-container-format');
+
+    recordingDIV.querySelector('button').onclick = function() {
+        var button = this;
+
+        if(button.innerHTML === 'Stop Recording') {
+
+            button.innerHTML = 'Start Recording';
+
+            function stopStream() {
+                if(button.stream && button.stream.stop) {
+                    button.stream.stop();
+                    button.stream = null;
+                }
+            }
+
+            if(button.recordRTC) {
+                if(button.recordRTC.length) {
+                    button.recordRTC[0].stopRecording(function(url) {
+                        if(!button.recordRTC[1]) {
+                            button.recordingEndedCallback(url);
+                            stopStream();
+
+//                                    saveToDiskOrOpenNewTab(button.recordRTC[0]);
+                              button.recordRTC[0].save('Downloads\/video.Mp4');
+                            return;
+                        }
+
+                        button.recordRTC[1].stopRecording(function(url) {
+                            button.recordingEndedCallback(url);
+                            stopStream();
+                        });
+                    });
+                }
+                else {
+                    button.recordRTC.stopRecording(function(url) {
+                        button.recordingEndedCallback(url);
+                        stopStream();
+
+//                                saveToDiskOrOpenNewTab(button.recordRTC);
+                        button.recordRTC.save('Downloads\/video.Mp4');
+                    });
+                }
+            }
+
+            return;
+        }
+
+        button.disabled = true;
+
+        var commonConfig = {
+            onMediaCaptured: function(stream) {
+                button.stream = stream;
+                if(button.mediaCapturedCallback) {
+                    button.mediaCapturedCallback();
+                }
+
+                button.innerHTML = 'Stop Recording';
+                button.disabled = false;
+            },
+            onMediaStopped: function() {
+                button.innerHTML = 'Start Recording';
+
+                if(!button.disableStateWaiting) {
+                    button.disabled = false;
+                }
+            },
+            
+        };
+        if(1) {
+            captureAudioPlusVideo(commonConfig);
+
+            button.mediaCapturedCallback = function() {
+                button.recordRTC = RecordRTC(button.stream, {
+                    type: mediaContainerFormat.value === 'Gif' ? 'gif' : 'video',
+                    disableLogs: params.disableLogs || false,
+                    canvas: {
+                        width: params.canvas_width || 320,
+                        height: params.canvas_height || 240
+                    },
+                    frameInterval: typeof params.frameInterval !== 'undefined' ? parseInt(params.frameInterval) : 20 // minimum time between pushing frames to Whammy (in milliseconds)
+                });
+
+                button.recordingEndedCallback = function(url) {
+                    recordingPlayer.src = null;
+                    recordingPlayer.srcObject = null;
+
+                    recordingPlayer.src = url;
+
+                    recordingPlayer.onended = function() {
+                        recordingPlayer.pause();
+                        recordingPlayer.src = URL.createObjectURL(button.recordRTC.blob);
+                    };
+                };
+
+                button.recordRTC.startRecording();
+            };
+        }
+    };
+
+    function captureAudioPlusVideo(config) {
+        captureUserMedia({video: true, audio: true}, function(audioVideoStream) {
+            recordingPlayer.srcObject = audioVideoStream;
+
+            config.onMediaCaptured(audioVideoStream);
+
+            audioVideoStream.onended = function() {
+                config.onMediaStopped();
+            };
+        }, function(error) {
+            config.onMediaCapturingFailed(error);
+        });
+    }
+
+    function captureUserMedia(mediaConstraints, successCallback, errorCallback) {
+        navigator.mediaDevices.getUserMedia(mediaConstraints).then(successCallback).catch(errorCallback);
+    }
+
+    if(DetectRTC.browser.name === 'Edge') {
+        console.warn('Neither MediaRecorder API nor webp is supported in Microsoft Edge. You cam merely record audio.');
+
+        recordingMedia.innerHTML = '<option value="record-audio">Audio</option>';
+        setMediaContainerFormat(['WAV']);
+    }
+
+    if(DetectRTC.browser.name === 'Firefox') {
+
+        recordingMedia.innerHTML = '<option value="record-audio-plus-video">Audio+Video</option>'
+                                    + '<option value="record-audio-plus-screen">Audio+Screen</option>'
+                                    + recordingMedia.innerHTML;
+    }
+
+    if(false && DetectRTC.browser.name === 'Chrome') {
+        recordingMedia.innerHTML = '<option value="record-audio-plus-video">Audio+Video</option>'
+                                    + recordingMedia.innerHTML;
+        console.info('This RecordRTC demo merely tries to playback recorded audio/video sync inside the browser. It still generates two separate files (WAV/WebM).');
+    }
+
+
+
+</script>
+</body>
+
+</html>
+
+
+
+
+

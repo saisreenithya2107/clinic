@@ -1,0 +1,54 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<link href="{%static 'homepage/css/sytle3.css' %}" rel="stylesheet" type="text/css" media="all" />
+
+
+</head>
+
+<body>
+	
+	<div class="main-w3layouts wrapper">
+		<h1>Login</h1>
+		<div class="main-agileinfo">
+			<div class="agileits-top">
+                <form class="site-form" action="{% url 'madmin:login1' %}" method="post">
+                    {% csrf_token %}
+                    {{form}}
+					<br>
+					<div class="wthree-text">
+						
+						<div class="clear"> </div>
+					</div>
+					<input type="submit" value="LOGIN">
+				</form>
+				
+			</div>
+		</div>
+
+	
+		<ul class="colorlib-bubbles">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+    </div>
+    
+    {% block content %}
+{% endblock %}
+
+</body>
+</html>

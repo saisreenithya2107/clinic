@@ -1,0 +1,229 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+       <link rel="stylesheet" href="{% static 'css/new.css' %}">
+       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+       <link href='https://fonts.googleapis.com/css?family=Ubuntu:400,500,700' rel='stylesheet' type='text/css'>
+       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <title></title>
+  </head>
+  <body>
+    <div class="">
+
+    </div>
+<div class="container">
+    <form action="{% url 'date' %}" method="post" style="position : relative;float : right;">
+      {% csrf_token %}
+      <input type="submit" value="next"  class = "btn btn-dark" >
+    </form>
+
+
+
+    <form action="{% url 'date1' %}" method="post" style = "position : relative;float:left;">
+      {% csrf_token %}
+      <input type="submit" value="back"  class = "btn btn-dark">
+
+    </form>
+
+  <center>      <h3>MY PERSONAL CALENDAR</h3></center>
+
+
+
+    <center>
+      <div class="">
+
+
+       <p>{{ present_year }}</p>
+
+    <form action = "{% url 'selectmonth' %}" method="post" >
+      <input type="month" name="select_month" id = "select_month" onchange="this.form.submit()">
+      {% csrf_token %}
+    </form>
+    <br>
+    </div>
+</center>
+
+  <table>
+
+    <tr>
+      <th class="day-name">Sun</th>
+      <th class="day-name">Mon</th>
+      <th class="day-name">Tue</th>
+      <th class="day-name">Wed</th>
+      <th class="day-name">Thu</th>
+      <th class="day-name">Fri</th>
+      <th class="day-name">Sat</th>
+    </tr>
+
+
+  {% for i,j in zipped_data %}
+
+    <tr>
+      {% if i.0 == j.0.0 and i.0 != 0 %}
+      <td class="day" onclick="myfunc('{{i.0}}')"  style="background-color : #45cc4c"><span class="number"  id = "{{ i.0 }}">{{i.0}}</span>
+        <div class  = "class1" style = "font-size:12px;">
+          {% for g in j.0.1 %}
+             {{g.0}}
+             {{g.1}}
+             <br>
+          {% endfor %}
+          </div>
+      </td>
+      {% elif i.0 == 0 %}
+      <td class="day1"><span class="number"></span></td>
+      {% else %}
+      <td class ="day" onclick="myfunc('{{i.0}}')"><span class = "number"  id = "{{ i.0 }}">{{i.0}}</span></td>
+        {% endif %}
+
+        {% if i.1 == j.1.0 and i.1 != 0 %}
+        <td class="day" onclick="myfunc('{{i.1}}')"  style="background-color : #45cc4c"><span class="number"  id = "{{ i.1 }}">{{i.1}}</span>
+          <div class="class1" style = "font-size:12px;">
+            {% for g in j.1.1 %}
+               {{g.0}}
+               {{g.1}}
+               <br>
+            {% endfor %}
+            </div>
+        </td>
+        {% elif i.1 == 0 %}
+        <td class="day1"><span class="number"></span></td>
+        {% else %}
+        <td class ="day"onclick="myfunc('{{i.1}}')"><span class = "number"  id = "{{ i.1 }}" >{{i.1}}</span></td>
+          {% endif %}
+
+          {% if i.2 == j.2.0 and i.2 != 0 %}
+          <td class="day"onclick="myfunc('{{i.2}}')"   style="background-color : #45cc4c"><span class="number"  id = "{{ i.2 }}">{{i.2}}</span>
+            <div class="class1" style = "font-size:12px;">
+              {% for g in j.2.1 %}
+                 {{g.0}}
+                 {{g.1}}
+                 <br>
+              {% endfor %}
+              </div>
+          </td>
+          {% elif i.2 == 0 %}
+          <td class="day1"><span class="number"></span></td>
+          {% else %}
+          <td class ="day" onclick="myfunc('{{i.2}}')"><span class = "number"  id = "{{i.2}}">{{i.2}}</span></td>
+            {% endif %}
+
+            {% if i.3 == j.3.0 and i.3 != 0 %}
+            <td class="day" onclick="myfunc('{{i.3}}')"  style="background-color : #45cc4c"><span class="number" id = "{{ i.3 }}">{{i.3}}</span>
+              <div class="class1" style = "font-size:12px;">
+                {% for g in j.3.1 %}
+                   {{g.0}}
+                   {{g.1}}
+                   <br>
+                {% endfor %}
+                </div>
+            </td>
+            {% elif i.3 == 0 %}
+            <td class="day1"><span class="number"></span></td>
+            {% else %}
+            <td class ="day" onclick="myfunc('{{i.3}}')"><span class = "number"  id = "{{ i.3 }}">{{i.3}}</span></td>
+              {% endif %}
+
+              {% if i.4 == j.4.0 and i.4 != 0 %}
+              <td class="day"onclick="myfunc('{{i.4}}')" style="background-color : #45cc4c"><span class="number"  id = "{{ i.4 }}" >{{i.4}}</span>
+                <div class="class1" style = "font-size:12px;">
+                  {% for g in j.4.1 %}
+                     {{g.0}}
+                     {{g.1}}
+                     <br>
+                  {% endfor %}
+                  </div>
+              </td>
+              {% elif i.4 == 0 %}
+              <td class="day1"><span class="number"></span></td>
+              {% else %}
+              <td class ="day" onclick = "myfunc('{{i.4}}')"><span class = "number"  id = "{{ i.4 }}">{{i.4}}</span></td>
+                {% endif %}
+                {% if i.5 == j.5.0 and i.5 != 0 %}
+                <td class="day"onclick="myfunc('{{i.5}}')"  style="background-color : #45cc4c"><span class="number"  id = "{{ i.5 }}">{{i.5}}</span>
+                  <div class="class1" style = "font-size:12px;">
+                    {% for g in j.5.1 %}
+                       {{g.0}}
+                       {{g.1}}
+                       <br>
+                    {% endfor %}
+                    </div>
+                </td>
+                {% elif i.5 == 0 %}
+                <td class="day1"><span class="number"></span></td>
+                {% else %}
+                <td class ="day" onclick="myfunc('{{i.5}}')"><span class = "number"  id = "{{ i.5 }}">{{i.5}}</span></td>
+                  {% endif %}
+
+
+                  {% if i.6 == j.6.0 and i.6 != 0 %}
+                  <td class="day"onclick="myfunc('{{i.6}}')" style="background-color : #45cc4c"><span class="number"  id = "{{ i.6 }}" >{{i.6}}</span>
+                    <div class="class1" style = "font-size:12px;">
+                      {% for g in j.6.1 %}
+                         {{g.0}}
+                         {{g.1}}
+                         <br>
+                      {% endfor %}
+                      </div>
+                  </td>
+                  {% elif i.6 == 0 %}
+                  <td class="day1"><span class="number"></span></td>
+                  {% else %}
+                  <td class ="day" onclick="myfunc('{{i.6}}')"><span class = "number"  id = "{{ i.6 }}">{{i.6}}</span></td>
+                    {% endif %}
+    </tr>
+
+  {% endfor %}
+  </table>
+</div>
+
+<div class="modal" tabindex="-1" id = "myModal" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Make a Plan</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <center>
+       <form method="post" action="{% url 'filldata' %}" class = "form-group">
+      <div class="modal-body">
+       <label for="try"  style="float : left;">date : </label>
+      <input type="text" id = "date_work" name="date_work" value="" readonly class = "form-control">
+      <br>
+      <label for = "modal_work" style="float : left;">work : </label>
+      <input type="text" name="data_work" value="" id = "data_work" maxlength="100" required class = "form-control">
+      </div>
+      <div class="modal-footer">
+      <input type="submit" name="" value="Submit" class= "btn btn-primary">
+      </div>
+       {% csrf_token %}
+       </form>
+     </center>
+    </div>
+  </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+      function myfunc(h){
+        var y = h;
+         var x = document.getElementById(String(y)).innerHTML;
+         var t = String(x) + "-" + String( {{ year_number.0 }} ) + "-" + String( {{ year_number.1 }} );
+         document.getElementById('date_work').value = t;
+         $(document).ready(function(){
+             document.getElementById('date_work').value = t;
+            $("#myModal").modal();
+         });
+     }
+
+</script>
+
+  </body>
+</html>
